@@ -1,36 +1,26 @@
 package com.ayushijani.journalApp.entity;
 
 
+import jdk.jfr.DataAmount;
+import lombok.Data;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
 //this is a POJO class (plain old java object)
+@Document(collection = "journal_entries")
+@Data
 public class JournalEntry {
 
-    private long id;
+    @Id
+    private ObjectId id;
+
+    private LocalDateTime date;
 
     private String title;
 
     private String content;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
