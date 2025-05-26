@@ -4,7 +4,10 @@ import com.ayushijani.journalApp.entity.JournalEntry;
 import com.ayushijani.journalApp.entity.User;
 import com.ayushijani.journalApp.repository.JournalEntryRepository;
 import com.ayushijani.journalApp.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,12 +19,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class UserService {
 
     @Autowired //dependency injection
     private UserRepository userRepository;
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 
     public void saveEntry(User user){
         userRepository.save(user);
@@ -35,6 +40,11 @@ public class UserService {
             return true;
 
         }catch (Exception e){
+            log.info("we are learning logging");
+            log.error("error occured for {}",user.getUserName(),e);
+            log.warn("warning");
+            log.debug("debug");
+            log.trace("trace");
             return false;
         }
     }

@@ -9,3 +9,10 @@ spring:
 server:
   servlet:
     context-path: /journalapp
+
+
+
+logging:
+  level:
+    com.ayushijani.journalApp: TRACE
+
